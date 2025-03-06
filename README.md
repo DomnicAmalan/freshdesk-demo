@@ -1,5 +1,33 @@
 # FreshDesk Demo
 
+## Features
+
+The FreshDesk Demo application includes the following key features:
+
+1. **Ticket Management**:
+   - Create, update, and resolve support tickets.
+   - Assign tickets to agents for efficient handling.
+
+2. **Agent-Customer Interaction**:
+   - Seamless communication between agents and customers.
+   - Automated responses using Ollama or OpenAI.
+
+3. **LLM Integration**:
+   - Local LLM support via Ollama.
+   - Cloud-based LLM support via OpenAI API.
+
+4. **Database Management**:
+   - PostgreSQL for storing application data.
+   - Redis for caching and queue management.
+
+5. **Docker Support**:
+   - Easy setup using Docker Compose.
+   - Pre-configured services for PostgreSQL, Redis, and Ollama.
+
+6. **Environment Configuration**:
+   - Flexible environment variables for customization.
+   - Support for both local and Docker-based setups.
+
 ## Requirements
 
 To run the FreshDesk Demo, ensure the following dependencies are installed and configured:
