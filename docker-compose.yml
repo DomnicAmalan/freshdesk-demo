@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ollama-docker
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - ollama-docker
+
+  freshdesk:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: freshdesk
+    ports:
+      - "3034:3034"
+    depends_on:
+      - postgres
+      - redis
+      - ollama
+    env_file:
+      - .env.docker
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+    networks:
+      - ollama-docker
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ./ollama/ollama:/root/.ollama
+    container_name: ollama
+    pull_policy: always
+    tty: true
+    restart: always
+    environment:
+      - OLLAMA_KEEP_ALIVE=24h
+      - OLLAMA_HOST=0.0.0.0
+      - LLM_MODEL_VERSION=${LLM_MODEL_VERSION:-"mistral:latest"}
+    networks:
+      - ollama-docker
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  ollama-docker:
+    external: false

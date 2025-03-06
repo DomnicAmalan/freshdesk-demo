@@ -1,0 +1,40 @@
+# Create a new Freshdesk configuration
+curl -X POST http://localhost:3034/freshdesk/config \
+  -H "Content-Type: application/json" \
+  -d '{
+    "freshdeskUrl": "https://licetac.freshdesk.com/",
+    "apiKey": "N9g3uXnUFcW2FEhZC",
+    "ticketCreateInterval": 300,
+    "ticketReplyInterval": 120,
+    "ticketsPerDay": 10
+  }'
+
+# Get configuration for a company
+curl -X GET http://localhost:3000/freshdesk/config/yourcompany
+
+# Get all configurations
+curl -X GET http://localhost:3000/freshdesk/configs
+
+# Update configuration for a company
+curl -X PATCH http://localhost:3000/freshdesk/config/YOUR_COMPANY_ID \
+  -H "Content-Type: application/json" \
+  -d '{
+    "apiKey": "NEW_API_KEY",
+    "ticketCreateInterval": 600,
+    "ticketReplyInterval": 180
+  }'
+
+# Delete configuration for a company
+curl -X DELETE http://localhost:3000/freshdesk/config/yourcompany
+
+# Delete a company completely
+curl -X DELETE http://localhost:3000/freshdesk/company/YOUR_COMPANY_ID
+
+# Clear queue for a company
+curl -X DELETE http://localhost:3000/freshdesk/queue/YOUR_COMPANY_ID
+
+# Clear all queues
+curl -X DELETE http://localhost:3000/freshdesk/queue
+
+# Get queue information
+curl -X GET http://localhost:3000/freshdesk/queue 
