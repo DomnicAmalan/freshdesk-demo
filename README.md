@@ -5,8 +5,8 @@
 The FreshDesk Demo application includes the following key features:
 
 1. **Ticket Management**:
-   - Create, update, and resolve support tickets.
-   - Assign tickets to agents for efficient handling.
+   - Create, and reply to tickets.
+   - Assign tickets to agents for efficient handling (uses random agents).
 
 2. **Agent-Customer Interaction**:
    - Seamless communication between agents and customers.
