@@ -98,8 +98,31 @@ To run the FreshDesk Demo, ensure the following dependencies are installed and c
 
 5. Access the application at `http://localhost:3034`.
 
-## Todo
+## Curl Examples
 
+Here are some sample curl commands to test the application:
+
+### 1. **Create a Ticket**
+```bash
+curl -X POST http://localhost:3034/tickets \
+  -H "Content-Type: application/json" \
+  -d '{
+    "subject": "Login Issue",
+    "description": "Unable to login to the system.",
+    "customerEmail": "customer@example.com"
+  }'
+```
+
+### 2. **Reply to a Ticket**
+```bash
+curl -X POST http://localhost:3034/tickets/1/reply \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "I've reviewed your issue and will assist you further."
+  }'
+```
+
+## Todo
 1. Docker fix for Ollama
 2. Create a repetitive flow between agents and customers
 3. Create Groups, Companies, and utilize that
